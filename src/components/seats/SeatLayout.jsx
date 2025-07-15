@@ -1,11 +1,11 @@
-import { useState } from "react";
-import { defaultSeatList } from "../../contants/MOCK_DATA";
+import { useContext, useState } from "react";
+import { SeatContext } from "../../contexts/SeatProvider";
 
 const ROWS = 5;
 const COLS = 8;
 
-const SeatLayout = () => {
-  const [seatList, setSeatList] = useState(defaultSeatList);
+const SeatLayout = ({ type }) => {
+  const { seatList, setSeatList } = useContext(SeatContext);
 
   // 좌석이 활성 상태인지 확인
   const isSeatEnabled = (row, col) =>
@@ -27,7 +27,6 @@ const SeatLayout = () => {
     }
 
     setSeatList(updated);
-    console.log(updated);
   };
 
   return (
@@ -48,7 +47,7 @@ const SeatLayout = () => {
                 }
               `}
             >
-              {row},{col}
+              {/* 이름 들어가는 자리 */}
             </div>
           );
         })
