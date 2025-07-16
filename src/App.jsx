@@ -1,26 +1,24 @@
-import { DotLottieReact } from "@lottiefiles/dotlottie-react";
+import CelebrationLottie from "./components/common/CelebrationLottie";
 import ResultSeat from "./components/results/ResultSeat";
 import SettingSeat from "./components/seats/SettingSeat";
 import Students from "./components/students/Students";
+import { LottieProvider } from "./contexts/LottieProvider";
 import SeatProvider from "./contexts/SeatProvider";
 import { StudentProvider } from "./contexts/StudentContext";
 
 function App() {
   return (
-    <DotLottieReact
-      src="https://lottie.host/29373c04-9a05-4a12-8b2d-86cda0c082aa/x0ci3AbDhW.lottie"
-      autoplay
-    />
-  );
-  return (
     <div className="flex">
-      <SeatProvider>
-        <SettingSeat />
-        <StudentProvider>
-          <Students />
-          <ResultSeat />
-        </StudentProvider>
-      </SeatProvider>
+      <LottieProvider>
+        <SeatProvider>
+          <SettingSeat />
+          <StudentProvider>
+            <Students />
+            <ResultSeat />
+          </StudentProvider>
+        </SeatProvider>
+        <CelebrationLottie />
+      </LottieProvider>
     </div>
   );
 }
