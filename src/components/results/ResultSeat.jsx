@@ -4,9 +4,13 @@ import { randomSeat } from "./randomSeat";
 import RandomBtn from "../common/RandomBtn";
 import { useStudents } from "../../contexts/StudentContext";
 import { SeatContext } from "../../contexts/SeatProvider";
+import { LottieContext } from "../../contexts/LottieProvider";
 
 const ResultSeat = () => {
   const [assignedStudents, setAssignedStudents] = useState([]);
+
+  //로티
+  const { handlePlay } = useContext(LottieContext);
 
   const studentList = useStudents().data;
   const { seatList } = useContext(SeatContext);
@@ -15,6 +19,7 @@ const ResultSeat = () => {
   const handleRandomSeat = () => {
     const assigned = randomSeat(studentList, seatList);
     setAssignedStudents(assigned);
+    handlePlay();
   };
 
   return (
