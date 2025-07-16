@@ -1,14 +1,19 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import ResultSeatLayout from "../seats/ResultSeatLayout";
 import { randomSeat } from "./randomSeat";
 import RandomBtn from "../common/RandomBtn";
+import { useStudents } from "../../contexts/StudentContext";
+import { SeatContext } from "../../contexts/SeatProvider";
 
 const ResultSeat = () => {
   const [assignedStudents, setAssignedStudents] = useState([]);
 
+  const studentList = useStudents().data;
+  const { seatList } = useContext(SeatContext);
+
   // 자리 무작위 배열 함수
   const handleRandomSeat = () => {
-    const assigned = randomSeat();
+    const assigned = randomSeat(studentList, seatList);
     setAssignedStudents(assigned);
   };
 
