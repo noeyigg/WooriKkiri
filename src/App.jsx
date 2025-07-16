@@ -1,8 +1,20 @@
+import ResultSeat from "./components/results/ResultSeat";
+import SettingSeat from "./components/seats/SettingSeat";
+import Students from "./components/students/Students";
+import SeatProvider from "./contexts/SeatProvider";
+import { StudentProvider } from "./contexts/StudentContext";
+
 function App() {
   return (
-    <>
-      <h1>우리끼리 자리 정하기</h1>
-    </>
+    <div className="flex">
+      <SeatProvider>
+        <SettingSeat />
+        <StudentProvider>
+          <Students />
+          <ResultSeat />
+        </StudentProvider>
+      </SeatProvider>
+    </div>
   );
 }
 

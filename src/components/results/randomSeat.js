@@ -1,10 +1,7 @@
-import { input_students } from "./input_students";
-import { seatList } from "./seatList";
-
-export const randomSeat = () => {
+export const randomSeat = (studentList, seatList) => {
   // 앞자리 선호/비선호 분류
-  const true_students = input_students.filter((s) => s.isFront === true);
-  const false_students = input_students.filter((s) => s.isFront === false);
+  const true_students = studentList.filter((s) => s.isFront === true);
+  const false_students = studentList.filter((s) => s.isFront === false);
 
   // 앞자리 구역 설정(1,2행 구역)
   const frontZone = seatList.filter(([row, col]) => row === 0 || row === 1);

@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { defaultSeatList } from "../../constants/MOCK_DATA";
 
 const ROWS = 5;
 const COLS = 8;
