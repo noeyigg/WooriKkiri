@@ -1,10 +1,17 @@
 export const randomSeat = (studentList, seatList) => {
+  const sortedSeatList = [...seatList].sort((a, b) => {
+    if (a[0] === b[0]) return a[1] - b[1]; // 같은 row면 col 오름차순
+    return a[0] - b[0]; // row 오름차순
+  });
+
   // 앞자리 선호/비선호 분류
   const true_students = studentList.filter((s) => s.isFront === true);
   const false_students = studentList.filter((s) => s.isFront === false);
 
   // 앞자리 구역 설정(1,2행 구역)
-  const frontZone = seatList.filter(([row, col]) => row === 0 || row === 1);
+  const frontZone = sortedSeatList.filter(
+    ([row, col]) => row === 0 || row === 1
+  );
 
   // 앞자리 선호 학생을 무작위 배열
   for (let i = true_students.length - 1; i > 0; i--) {
@@ -27,7 +34,7 @@ export const randomSeat = (studentList, seatList) => {
 
   // 사용된 자리와 남아있는 자리 비교
   const usedSeats = assignedTrue.map((s) => JSON.stringify(s.seat));
-  const remainingSeats = seatList.filter(
+  const remainingSeats = sortedSeatList.filter(
     (seat) => !usedSeats.includes(JSON.stringify(seat))
   );
 
@@ -47,7 +54,6 @@ export const randomSeat = (studentList, seatList) => {
   }));
 
   const assigned = [...assignedTrue, ...assignedFalse];
-
   //   for (let i = 0; i < assigned.length; i++) {
   //     console.log(assigned[i]);
   //   }
